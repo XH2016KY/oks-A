@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oks.mapper.IProductMapper" >
+
+    <resultMap type="com.oks.pojo.Product" id="base_product">
+        <id column="name" property="name"/>
+        <result column="quatity" property="quatity"/>
+    </resultMap>
+    
+    <sql id="base_sql">name</sql>
+    <sql id="base_quatity">quatity</sql>
+    
+    <update id="updateQuatity">
+         
+         update product set quatity = #{count} 
+    
+    </update>
+
+    <select id="selectCount"  resultType="integer">
+         select <include refid="base_quatity"/>
+         from product
+    </select>
+    
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oks.mapper.IUserMapper" >
+
+    <resultMap type="com.oks.pojo.User" id="base_user">
+        <id column="name" property="name"/>
+        <result column="password" property="password"/>
+    </resultMap>
+    
+    <sql id="base_sql">name</sql>
+
+    <select id="findByName" resultMap="base_user">
+    
+        select <include refid="base_sql"/>
+        from user 
+        <where>
+             name = #{user.name}
+        </where>
+    </select>
+    
+    <insert id="register">
+        insert into user
+        (name,password)
+        values
+        (
+         #{user.name},
+         #{user.password}
+        )
+    </insert>
+    
+    <select id="findAll" resultMap="base_user">
+        select name,password from user
+    </select>
+    
+</mapper>
